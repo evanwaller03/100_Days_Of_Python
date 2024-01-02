@@ -19,7 +19,7 @@ score = int(str(digitOne) + str(digitTwo))
 if score < 10 or score > 90:
     print(f"Your score is {score}, you go together like coke and mentos")
 
-elif score < 50 and score > 40:
+elif score <= 50 and score >= 40:
     print(f"Your score is {score}, you are alright together.")
 
 else:
