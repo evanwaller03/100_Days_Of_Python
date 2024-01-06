@@ -12,4 +12,4 @@ letter_index = cols.index(letter)
 num_index = int(hiding_spot[1])-1
 
 map[num_index][letter_index] = 'x'
-print(f"{line_one}\n{line_two}\n{line_three}\n")
+print(f"{line_one}\n{line_two}\n{line_three}\n") 
