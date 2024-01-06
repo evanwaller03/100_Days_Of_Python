@@ -1,0 +1,46 @@
+logoReeborg's World
+
+Hurdle 3 ✓🤖
+ World Info 
+Python
+ Reeborg's keyboard Additional options
+English
+ 
+
+reverse step run step pause stop reload 
+ 127/127   
+Python CodelibraryA↑AA↓A
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+​
+def find_flag():
+    while not(at_goal()):
+        while wall_in_front() == False:
+            if not(at_goal()):
+                move()
+            if at_goal():
+                break
+        if wall_in_front() and not(at_goal()):
+            turn_left()
+            move()
+            turn_right()
+            move()
+            turn_right()
+            move()
+            turn_left()
+    
+find_flag()
+Basic commands
+Defining
+Loops
+Decisions
+Conditions
+Using variables
+Reeborg's basic keyboard
+minimize
+close
+Commands Conditions Python Objects Special
+at_goal() front_is_clear() right_is_clear() wall_in_front() wall_on_right() object_here() carries_object() is_facing_north()
+UNDO REDO
