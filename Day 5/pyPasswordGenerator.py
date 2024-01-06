@@ -17,21 +17,21 @@ total = l_count+s_count+n_count
 
 password = ""
 
-while len(password) <= total:
+while len(password) < total:
     rand_int = random.randint(0,2)
     if rand_int == 0:
         if letter_counter < l_count:
-            password = f"{password}{letters[random.randint(0,51)]}"
+            password = password+ letters[random.randint(0,51)]
             letter_counter += 1
     
     elif rand_int == 1:
         if number_counter < n_count:
-            password= f"{password}{(numbers[random.randint(0,9)])}"
+            password= password + (numbers[random.randint(0,9)])
             number_counter += 1
     
     elif rand_int == 2:
         if symbol_counter < s_count:
-            password= f"{password}{symbols[random.randint(0,9)]}"
+            password= password + symbols[random.randint(0,9)]
             symbol_counter += 1
 
 print(f"Your New Password: {password}\nActual Length: {len(password)}\nRequested Total Length:{total}")
