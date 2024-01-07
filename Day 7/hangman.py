@@ -13,55 +13,58 @@ random_words = [
     "olive", "pistachio", "quinoa", "raisin", "spinach", "tomato", "utopia", "vanish", "walrus", "xylem",
     "yacht", "zebra"
 ]
+play_again = True
 
-selected_word = random_words[random.randint(0,100)].lower()
-blanks = ""
-for n in range(0, len(selected_word)):
-    blanks = blanks + "_"
+while play_again:
 
-lives_left = 6
-letter_bank = []
+    selected_word = random_words[random.randint(0,100)].lower()
+    blanks = ""
+    for n in range(0, len(selected_word)):
+        blanks = blanks + "_"
 
-print(selected_word)
-print(blanks)
+    lives_left = 6
+    letter_bank = []
 
-correct_word = False
-user_win = True
+    print(blanks)
 
-while correct_word == False:
-    print(f"Lives left: {lives_left}")
-    guess = input("Guess a letter: ").lower()
-    if guess not in letter_bank:
-        letter_bank.append(guess)
-        if str(guess) in selected_word:
-            print("Correct!")
-            #replace a blank
-            for n in range(0, len(selected_word)):
-                if selected_word[n] == guess:
-                    blanks = blanks[:n] + guess + blanks[n + 1:]
-            if "_" not in blanks:
-                break
-            
-            print(blanks)
-        else: 
-            print(f"\"{guess.lower()}\" is not in the word.")
-            if lives_left > 0:
-                lives_left -= 1
-                if lives_left == 0:
-                    user_win = False
+    correct_word = False
+    user_win = True
+
+    while correct_word == False:
+        print(f"Lives left: {lives_left}")
+        guess = input("Guess a letter: ").lower()
+        if guess not in letter_bank:
+            letter_bank.append(guess)
+            if str(guess) in selected_word:
+                print("Correct!")
+                #replace a blank
+                for n in range(0, len(selected_word)):
+                    if selected_word[n] == guess:
+                        blanks = blanks[:n] + guess + blanks[n + 1:]
+                if "_" not in blanks:
                     break
+                
+                print(blanks)
+            else: 
+                print(f"\"{guess.lower()}\" is not in the word.")
+                if lives_left > 0:
+                    lives_left -= 1
+                    if lives_left == 0:
+                        user_win = False
+                        break
+        else:
+            print("That letter has already been used.")
+
+    if user_win:
+        print("You Win!")
     else:
-        print("That letter has already been used.")
+        print("You lost. :(")
 
-if user_win:
-    print("You Win!")
-    # while True:
-    #     play_again = str(input("You Lost. Play again? Yes(Y) or No(N)?")).lower()
-    #     if play_again == "y":
-            
-    #     elif play_again == "n":
-else:
-    print("You lost. :(")
+    play_again_input = str(input("You Lost. Play again? Yes(Y) or No(N)?")).lower()
+    if play_again_input == "y":
+        play_again = True
+    elif play_again_input == "n":
+        play_again = False
 
-            
+print("Thanks for playing!")
     
