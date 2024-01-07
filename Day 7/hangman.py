@@ -1,5 +1,56 @@
 import random
 
+HANGMANPICS = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
+
 random_words = [
     "apple", "banana", "cherry", "date", "elderberry", "fig", "grape", "honeydew", "indigo", "jackfruit",
     "kiwi", "lemon", "mango", "nectarine", "orange", "papaya", "quince", "raspberry", "strawberry", "tangerine",
@@ -31,20 +82,22 @@ while play_again:
     user_win = True
 
     while correct_word == False:
+        print(HANGMANPICS[6-lives_left])
+        print(blanks)
+        if len(letter_bank) > 0:
+            print(f"Letters used: {str(", ".join(letter_bank))}")
         print(f"Lives left: {lives_left}")
+
         guess = input("Guess a letter: ").lower()
         if guess not in letter_bank:
             letter_bank.append(guess)
             if str(guess) in selected_word:
-                print("Correct!")
-                #replace a blank
                 for n in range(0, len(selected_word)):
                     if selected_word[n] == guess:
                         blanks = blanks[:n] + guess + blanks[n + 1:]
                 if "_" not in blanks:
                     break
                 
-                print(blanks)
             else: 
                 print(f"\"{guess.lower()}\" is not in the word.")
                 if lives_left > 0:
@@ -52,12 +105,16 @@ while play_again:
                     if lives_left == 0:
                         user_win = False
                         break
+                
         else:
             print("That letter has already been used.")
 
     if user_win:
+        print(selected_word)
         print("You Win!")
     else:
+        print(blanks)
+        print(f"The correct word was: {selected_word}")
         print("You lost. :(")
 
     play_again_input = str(input("You Lost. Play again? Yes(Y) or No(N)?")).lower()
