@@ -1,7 +1,16 @@
+normal_alphabet = 'abcedfghijklmnopqrstuvwxyz'
+
 def encode(message, shift_number):
-    return
+    for n in range(0, len(normal_alphabet)):
+        if (n + shift_number) > len(normal_alphabet):
+            new_index = (n + shift_number) - len(normal_alphabet)
+        else: 
+            new_index = n + shift_number
+        
+    return 
 
 def decode(message, shift_number):
+
     return
 
 print("Welcome to Ceasars Cipher.")
@@ -18,6 +27,7 @@ while run_again:
             message_to_encode = input("Message to encode: ")
             set_shift_number = int(input("Shift number: "))
             encoded_message = encode(message_to_encode, set_shift_number)
+            print(encoded_message)
 
         elif encode_or_decode == 'd':
             input_not_validated = False
