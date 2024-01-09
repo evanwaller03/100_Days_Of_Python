@@ -14,21 +14,8 @@ def encode(message, shift_number):
         else: 
             new_index = current_index + shift_number
         encoded_message = encoded_message + normal_alphabet[new_index]
-    print(encoded_message)
-        
-    return
-
-        
-
-    # for n in range(0, len(normal_alphabet)):
-    #     print(n)
-    #     if (n + shift_number) > len(normal_alphabet):
-    #         new_index = (n + shift_number) - len(normal_alphabet)
-    #     else: 
-    #         new_index = n + shift_number
-    #     print(new_index)
-        
-    return 
+    
+    return encoded_message
 
 def decode(message, shift_number):
 
