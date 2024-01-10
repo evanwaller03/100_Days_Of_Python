@@ -51,3 +51,7 @@ while run_again:
         decode_shift_number = int(input("Shift number: "))
         decoded_message = decode(message_to_decode, decode_shift_number)
         print(decoded_message)
+    
+    play_again = input("Again? (Y) or (N)").lower()
+    if play_again == "n":
+        run_again = False
