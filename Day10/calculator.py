@@ -39,5 +39,5 @@ while True:
         first_input = False
     else:
         first_input = True
-
+# need to fix the continuing using number function flow
 print("Thanks for using my calculator!")
