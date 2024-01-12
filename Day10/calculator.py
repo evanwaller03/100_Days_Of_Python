@@ -26,7 +26,7 @@ def get_value(first_num, operator, second_num):
     return output
 
 def calculator():
-    first = int(input("Enter first number: "))
+    first = float(input("Enter first number: "))
     for symbol in operations:
         print(symbol)
 
@@ -34,7 +34,7 @@ def calculator():
 
     while continue_operation:
         operator = str(input("Choose an operator: "))
-        second = int(input("Enter second number: "))
+        second = float(input("Enter second number: "))
         output = get_value(first, operator, second)
 
         go_again = input(f"Type 'y to continue calculating with {output}, or type 'n' to start a new calc, or 'x' to quit: ").lower()
