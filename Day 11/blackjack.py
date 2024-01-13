@@ -30,27 +30,43 @@ for suit in suits:
 randomized_deck = deck
 random.shuffle(randomized_deck)
 
-player_hand = {}
-dealer_hand = {}
+player_hand = []
+dealer_hand = []
 
 def deal_hand(player_hand, dealer_hand, deck):
     i = 0
-    player_card_count = 1
-    dealer_card_count = 1
     while i < 4:
         random_card = deck[random.randint(0,len(deck)-1)]
         if i % 2 == 0:
-            player_hand[player_card_count] = random_card
-            player_card_count += 1
-            deck.remove(random_card)
-        if i % 2 == 1:
-            dealer_hand[dealer_card_count] = random_card
-            dealer_card_count += 1
-            deck.remove(random_card)
-        i += 1
-    print(player_hand)
-    print(dealer_hand)
+            player_hand.append(random_card)
 
-print(len(randomized_deck))
+        if i % 2 == 1:
+            dealer_hand.append(random_card)
+
+        deck.remove(random_card)
+        i += 1
+    print(f"Your Cards: {player_hand[0]}, {player_hand[1]}")
+    print(f"Dealer's Hand: {dealer_hand[1]}, ??")
+
+def draw_card(deck, user):
+    random_card = deck[random.randint(0,len(deck)-1)]
+    if user == 'p':  #player hits
+        player_hand.append(random_card)
+
+    else:  #dealer hits
+        dealer_hand.append(random_card)
+    deck.remove(random_card)
+    
+
+# Player and Dealer now get their initial hand
 deal_hand(player_hand, dealer_hand, randomized_deck)
-print(len(randomized_deck))
+while True: 
+    if input("Do you want to draw another card? (Y) or (N): ").lower() == 'y':
+        draw_card(randomized_deck, 'p')
+    else:
+        break
+
+print(player_hand)
+
+
+
