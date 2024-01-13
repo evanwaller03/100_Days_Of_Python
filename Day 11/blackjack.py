@@ -1,5 +1,6 @@
 # 52 Cards, 13 Aces, 13 Clubs, 13 Diamonds, 13 Hearts
 # 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A
+import random 
 
 individual_13 = {
     "2" : 1, # Card and then order for comparing their values later, 2 is the lowest, ace is the highest
@@ -27,3 +28,6 @@ for suit in suits:
         deck.append(card_to_add)
 
 print(deck)
+random.shuffle(deck)
+print(deck)
+
