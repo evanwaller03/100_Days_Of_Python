@@ -3,19 +3,19 @@
 import random 
 
 individual_13 = {
-    "2" : 1, # Card and then order for comparing their values later, 2 is the lowest, ace is the highest
-    "3" : 2, 
-    "4" : 3, 
-    "5" : 4,
-    "6" : 5,
-    "7" : 6, 
-    "8" : 7, 
-    "9" : 8, 
-    "10" : 9, 
+    "2" : 2, # Card and then order for comparing their values later, 2 is the lowest, ace is the highest
+    "3" : 3, 
+    "4" : 4, 
+    "5" : 5,
+    "6" : 6,
+    "7" : 7, 
+    "8" : 8, 
+    "9" : 9, 
+    "10" : 10, 
     "J" : 10, 
-    "Q" : 11, 
-    "K" : 12, 
-    "A" : 13,
+    "Q" : 10, 
+    "K" : 10, 
+    "A" : 10,
 }
 
 suits = [ "C", "D", "H", "S" ]
@@ -46,7 +46,7 @@ def deal_hand(player_hand, dealer_hand, deck):
         deck.remove(random_card)
         i += 1
     print(f"Your Cards: {player_hand[0]}, {player_hand[1]}")
-    print(f"Dealer's Hand: {dealer_hand[1]}, ??")
+    print(f"Dealer's Hand: {dealer_hand[1]}, ??\n")
 
 def draw_card(deck, user):
     random_card = deck[random.randint(0,len(deck)-1)]
@@ -56,17 +56,29 @@ def draw_card(deck, user):
     else:  #dealer hits
         dealer_hand.append(random_card)
     deck.remove(random_card)
-    
+
+def calc_value(hand):
+    hand_val = 0
+    for card in hand:
+        hand_val += individual_13[card[:-1]]
+
+    return hand_val
 
 # Player and Dealer now get their initial hand
 deal_hand(player_hand, dealer_hand, randomized_deck)
 while True: 
     if input("Do you want to draw another card? (Y) or (N): ").lower() == 'y':
         draw_card(randomized_deck, 'p')
+        hand_value = calc_value(player_hand)
+        string_players_hand = ", ".join(player_hand)
+        print(f"Your Cards: {string_players_hand}  (Value: {hand_value})")
+        if hand_value > 21:
+            print('You lost!')
+            break
     else:
         break
 
-print(player_hand)
-
+string_players_hand = ", ".join(player_hand)
+print(f"Your Cards: {string_players_hand}")
 
 
