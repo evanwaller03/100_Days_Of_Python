@@ -27,7 +27,30 @@ for suit in suits:
         card_to_add = num + suit
         deck.append(card_to_add)
 
-print(deck)
-random.shuffle(deck)
-print(deck)
+randomized_deck = deck
+random.shuffle(randomized_deck)
 
+player_hand = {}
+dealer_hand = {}
+
+def deal_hand(player_hand, dealer_hand, deck):
+    i = 0
+    player_card_count = 1
+    dealer_card_count = 1
+    while i < 4:
+        random_card = deck[random.randint(0,len(deck)-1)]
+        if i % 2 == 0:
+            player_hand[player_card_count] = random_card
+            player_card_count += 1
+            deck.remove(random_card)
+        if i % 2 == 1:
+            dealer_hand[dealer_card_count] = random_card
+            dealer_card_count += 1
+            deck.remove(random_card)
+        i += 1
+    print(player_hand)
+    print(dealer_hand)
+
+print(len(randomized_deck))
+deal_hand(player_hand, dealer_hand, randomized_deck)
+print(len(randomized_deck))
