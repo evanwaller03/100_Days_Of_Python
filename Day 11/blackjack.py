@@ -81,4 +81,5 @@ while True:
 string_players_hand = ", ".join(player_hand)
 print(f"Your Cards: {string_players_hand}")
 
+#Must add in Aces being 1 or 11, dealer auto hits until 16 or over, and black jack auto wins if the player equals 21, and play again.
 
