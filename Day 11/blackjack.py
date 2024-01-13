@@ -1,3 +1,14 @@
+# Rules
+# Add up cards tp the largest number
+# Numbers are face value
+# Face cards are all 10
+# Ace can either be 1 or 11
+# If the dealer is less than 17 they must hit
+# If you go over 21 you lose
+
+# When your score equals the dealers score then there is a draw
+
+
 # 52 Cards, 13 Aces, 13 Clubs, 13 Diamonds, 13 Hearts
 # 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A
 import random 
@@ -27,6 +38,7 @@ for suit in suits:
         card_to_add = num + suit
         deck.append(card_to_add)
 
+win_flag = True
 randomized_deck = deck
 random.shuffle(randomized_deck)
 
@@ -73,13 +85,31 @@ while True:
         string_players_hand = ", ".join(player_hand)
         print(f"Your Cards: {string_players_hand}  (Value: {hand_value})")
         if hand_value > 21:
-            print('You lost!')
+            win_flag = False
             break
+
     else:
         break
+if win_flag:
+    string_players_hand = ", ".join(player_hand)
+    print(f"Your Cards: {string_players_hand}")
 
-string_players_hand = ", ".join(player_hand)
-print(f"Your Cards: {string_players_hand}")
+    dealer_hand_value = calc_value(dealer_hand)
 
-#Must add in Aces being 1 or 11, dealer auto hits until 16 or over, and black jack auto wins if the player equals 21, and play again.
+    while dealer_hand_value < 17:
+        draw_card(dealer_hand, 'd')
+        dealer_hand_value = calc_value(dealer_hand)
+
+    if dealer_hand_value > 21:
+        print("You win")
+    elif hand_value > dealer_hand_value:
+        print("You win!")
+    elif hand_value < dealer_hand_value:
+        print("You lose.")
+    else:
+        print("Draw.")
+else:
+    print("You lose.")
+        
+
 
