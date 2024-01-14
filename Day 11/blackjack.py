@@ -58,7 +58,7 @@ def deal_hand(player_hand, dealer_hand, deck):
         deck.remove(random_card)
         i += 1
     print(f"Your Cards: {player_hand[0]}, {player_hand[1]}")
-    print(f"Dealer's Hand: {dealer_hand[1]}, ??\n")
+    print(f"Dealer's Hand: ??, {dealer_hand[1]}")
 
 def draw_card(deck, user):
     random_card = deck[random.randint(0,len(deck)-1)]
@@ -78,6 +78,7 @@ def calc_value(hand):
 
 # Player and Dealer now get their initial hand
 deal_hand(player_hand, dealer_hand, randomized_deck)
+
 while True: 
     if input("Do you want to draw another card? (Y) or (N): ").lower() == 'y':
         draw_card(randomized_deck, 'p')
@@ -87,18 +88,22 @@ while True:
         if hand_value > 21:
             win_flag = False
             break
-
     else:
         break
 if win_flag:
+    hand_value = calc_value(player_hand)
     string_players_hand = ", ".join(player_hand)
-    print(f"Your Cards: {string_players_hand}")
-
+    string_dealers_hand = ", ".join(dealer_hand)
+    print(f"Your Cards: {string_players_hand}   (Value: {hand_value})")
     dealer_hand_value = calc_value(dealer_hand)
+    print(f"Dealer's Hand: {string_dealers_hand}   (Value: {dealer_hand_value})")
+    
 
     while dealer_hand_value < 17:
-        draw_card(dealer_hand, 'd')
+        draw_card(randomized_deck, 'd')
         dealer_hand_value = calc_value(dealer_hand)
+        string_dealers_hand = ", ".join(dealer_hand)
+        print(f"Dealer's Hand: {string_dealers_hand}   (Value: {dealer_hand_value})")
 
     if dealer_hand_value > 21:
         print("You win")
