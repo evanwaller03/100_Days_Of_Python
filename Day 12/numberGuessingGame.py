@@ -37,6 +37,7 @@ def run_game():
                 run_game()
             else:
                 print('Thanks for playing.')
+                starting_attempts = -1
                 break
         else:
             starting_attempts -= 1
