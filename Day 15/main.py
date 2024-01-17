@@ -6,11 +6,22 @@ COFFEE = resources["coffee"]
 MONEY = 0
 
 def print_report():
-    print(f"Water: {WATER}\nMilk: {MILK}\nCoffee: {COFFEE}\nMoney: {MONEY}")
+    print(f"Water: {WATER}\nMilk: {MILK}\nCoffee: {COFFEE}\nMoney: ${MONEY}")
 
-def check_resources_available(drink, WATER, MILK, COFFEE):
-    WATER -= drink['ingredients']['water']
-    return WATER
+def check_resources_available(drink):
+    for ingredient in drink:
+        if drink[ingredient] > resources[ingredient]:
+            print(f"Sorry, there is not enough {ingredient}.")
+            return False
+    return True
+
+def process_coint():
+    print("Please insert coins.")
+    total = int(input("Number of Quarters: ")) * .25
+    total += int(input("Number of Dimes: ")) * .1
+    total += int(input("Number of Nickels: ")) * .05
+    total += int(input("Number of Pennies: ")) * .01
+    
 
 is_on = True
 
@@ -21,7 +32,5 @@ while is_on:
     elif user_order == 'off':
         is_on = False
     else:
-        print(WATER)
         drink = MENU[user_order]
-        WATER = check_resources_available(drink, WATER, MILK, COFFEE)
-        print(WATER)
+        if check_resources_available(drink):
