@@ -10,3 +10,4 @@ waller.forward(100)
 waller_screen = Screen()
 waller_screen.exitonclick()
 print(waller_screen.canvheight) # Access an attribute of an object
+
