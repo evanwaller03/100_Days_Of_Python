@@ -7,4 +7,26 @@
 # car == CarBluePrint()
 # object == Class()
 
+from COFFEEMACHINE.menu import Menu, MenuItem
+from COFFEEMACHINE.coffee_maker import CoffeeMaker
+from COFFEEMACHINE.money_machine import MoneyMachine
 
+coffee_machine = CoffeeMaker()
+menu = Menu()
+money_machine = MoneyMachine()
+
+def start_machine():
+    is_on = True
+    while is_on:
+        user_order = str(input(f"What would you like? {menu.get_items()}: "))
+        if user_order == 'report':
+            coffee_machine.report()
+        elif user_order == 'off':
+            is_on = False
+        else:
+            drink = menu.find_drink(user_order)
+            if coffee_machine.is_resource_sufficient(drink):
+                if money_machine.make_payment(drink.cost):
+                    coffee_machine.make_coffee(drink)
+
+start_machine()
