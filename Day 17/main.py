@@ -10,7 +10,7 @@ class User:
         self.followers = 0
         self.following = 0
 
-    def change_followers(self, user, ):
+    def follow(self, user, ):
         self.following += 1
         user.followers =+ 1
 
@@ -23,7 +23,7 @@ lindsay = User(2, "Instructor Peters")
 print(evan.following)
 print(lindsay.followers)
 
-evan.change_followers(lindsay)
+evan.follow(lindsay)
 
 print(evan.following)
 print(lindsay.followers)
