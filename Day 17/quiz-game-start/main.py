@@ -11,9 +11,10 @@ for question in question_data:
     new_q = Question(question['text'], question['answer'])
     question_bank.append(new_q)
 
-new_quiz = QuizBrain(question_bank)
+quiz = QuizBrain(question_bank)
 
-while new_quiz.questions_remain():
-    user_input = new_quiz.next_question()
-    new_quiz.check_answer(user_input)
-    
+while quiz.questions_remain():
+    quiz.next_question()
+
+print("You have completed the quiz!")
+print(f"Your final score is {quiz.score}/{len(question_bank)}")
