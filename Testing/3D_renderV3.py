@@ -5,9 +5,9 @@ import numpy as np
 import time
 
 # Adjusting grid size to 40x40
-GRID_WIDTH = 20
-GRID_HEIGHT = 20
-MAX_HISTORY = 15
+GRID_WIDTH = 30
+GRID_HEIGHT = 30
+MAX_HISTORY = 10
 
 # Initialize grid with random states
 grid = np.random.choice([0, 1], size=(GRID_WIDTH, GRID_HEIGHT))
@@ -97,7 +97,7 @@ def draw_grid():
     glLoadIdentity()
     
     # Define the camera position and view direction
-    gluLookAt(0, -5, 10, 0, 0, 0, 0, 1, 0)
+    gluLookAt(3, 3, -10, 0, 0, 0, 0, 1, 0)
 
     
     # Draw grid history
@@ -110,24 +110,23 @@ def draw_grid():
 def draw_snapshot(snapshot, layer):
     camera_pos = (-1, -5, 7)  # This should be dynamically determined based on your camera setup
     layer_height = -layer * 0.2
-    spacing = 0.25  # Additional spacing between cubes
+    spacing = 0.1  # Additional spacing between cubes
     for x in range(GRID_WIDTH):
         for y in range(GRID_HEIGHT):
             if snapshot[x, y] == 1:
-                # Increase spacing by adjusting the multiplier and adding an explicit spacing term
                 cube_x = (x - GRID_WIDTH / 2) * (0.2 + spacing)
                 cube_y = (y - GRID_HEIGHT / 2) * (0.2 + spacing)
-
                 cube_z = layer_height
+                
                 if is_cube_visible(cube_x, cube_y, cube_z, camera_pos):
-                    distance = distance_to_center(x, y)
-                    color = color_from_distance(distance)
-                    glColor3f(*color)
-                    color = color_from_distance(distance)
+                    if layer == len(grid_history) - 1:  # Check if this is the top layer
+                        # color = (1,0,0)
+                        distance = distance_to_center(x, y)
+                        color = color_from_distance(distance)  # Color based on distance for top layer
+                    else:
+                        color = (0.15, 0.15, 0.15)  # Grey color for all layers underneath
+
                     draw_cube(cube_x, cube_y, cube_z, 0.1, color)
-
-
-
 
 def distance_to_center(x, y):
     """Calculate the distance from a cell to the center of the grid."""
