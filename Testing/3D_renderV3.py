@@ -5,9 +5,9 @@ import numpy as np
 import time
 
 # Adjusting grid size to 40x40
-GRID_WIDTH = 30
-GRID_HEIGHT = 30
-MAX_HISTORY = 10
+GRID_WIDTH = 75
+GRID_HEIGHT = 75
+MAX_HISTORY = 1
 
 # Initialize grid with random states
 grid = np.random.choice([0, 1], size=(GRID_WIDTH, GRID_HEIGHT))
@@ -97,7 +97,7 @@ def draw_grid():
     glLoadIdentity()
     
     # Define the camera position and view direction
-    gluLookAt(3, 3, -10, 0, 0, 0, 0, 1, 0)
+    gluLookAt(0, 3, -30, 0, 0, 0, 0, 1, 0)
 
     
     # Draw grid history
@@ -110,7 +110,7 @@ def draw_grid():
 def draw_snapshot(snapshot, layer):
     camera_pos = (-1, -5, 7)  # This should be dynamically determined based on your camera setup
     layer_height = -layer * 0.2
-    spacing = 0.1  # Additional spacing between cubes
+    spacing = 0.08  # Additional spacing between cubes
     for x in range(GRID_WIDTH):
         for y in range(GRID_HEIGHT):
             if snapshot[x, y] == 1:
@@ -187,7 +187,7 @@ def update_and_redraw(value):
     glutPostRedisplay()  # Trigger a redraw
     global iterations
     iterations += 1
-    if iterations >= 60:
+    if iterations >= 200:
         iterations = 0
         reset_grid()
     glutTimerFunc(100, update_and_redraw, 0)  # Schedule the next update
