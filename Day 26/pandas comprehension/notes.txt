@@ -1,0 +1,3 @@
+Pandas Dictionary Comprehension
+
+{new_key:new_value for (index,row) in in df. iterrows()}
