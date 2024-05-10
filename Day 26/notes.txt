@@ -1,0 +1,15 @@
+list comprehension
+
+keyword guide: new_list = [new_item for item in list]
+example: new_list = [n + 1 for n in numbers]
+
+python sequences:
+list 
+tuple
+string
+range
+
+
+conditional list comprehrension
+keyword guide: new_list = [new_item for item in list if test]
+example: new_list = [n for n in names if len(n) < 5]
