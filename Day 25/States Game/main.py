@@ -44,9 +44,8 @@ def guess_is_right(state):
 while len(guess_list) != 50:
     state = screen.textinput(title="Guess the State", prompt="What's another state's name?")
     if state == "exit":
-        for states in all_states:
-            if states not in guess_list:
-                missing_states.append(states)
+        missing_states = [state for state in all_states if state not in guess_list]
+        
         print(missing_states)
         break
     if is_a_state(state):
